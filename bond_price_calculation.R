@@ -58,7 +58,7 @@ monthly_rates <- zoo(rep(composite_rate / 12, each = 6), order.by = g) ## Check 
 
 
 for(i in 1:(length(g)-1)) {
-    redemption$Monthly_interest[i] <- monthly_rates[i] * redemption$Interest_base[i] %>% round(digits = 4)
+    redemption$Monthly_interest[i] <- (monthly_rates[i] * redemption$Interest_base[i]) %>% round(digits = 2)
     redemption$Unpaid_interest[i] <- redemption$Unpaid_interest[max(1, i-1)] + redemption$Monthly_interest[i]
     redemption$Bond_value[i+1] <- redemption$Interest_base[i] + redemption$Unpaid_interest[i]
 
